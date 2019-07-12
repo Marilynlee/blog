@@ -1,3 +1,4 @@
+# webstorm快捷键（我自己常用的）
 - F1                    在方法名上按F1，会显示这个方法的使用文档，参数和说明 
 - Ctrl+Shift+V          可以选择剪切板历史内容进行粘贴
 - Alt+Insert            新建文件
@@ -31,3 +32,9 @@
 - Ctrl+Shift+U           大写/小写所选的文本
 - Alt+Shift+R            查找所有选中的文本
 - lorem+number(0-n)      生成number个无意义的单词
+
+
+
+_________
+***[返回列表页](https://github.com/Marilynlee/blog)***
+_________
