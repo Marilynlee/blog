@@ -143,3 +143,11 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 
 - no-store，本地和代理服务器都不可以存储缓存，每次都要重新请求，拿到内容。
 - no-transform，主要是用在 proxy 服务器，不允许进行格式转换。
+
+
+
+
+
+_________
+***[返回列表页](https://github.com/Marilynlee/blog)***
+_________
