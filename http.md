@@ -34,7 +34,7 @@ HTTP请求只能建立在TCP连接之上，而每次TCP的连接都需要进行�
 ### __HTTP报文格式__
 
 | |请求报文|响应报文|
-|:-|:-|:-|
+|:---|:---|:---|
 |起始行|GET(请求方法) /test/hello.txt(URL) HTTP/1.0(协议及版本) |HTTP/1.0(协议及版本) 200(状态码)  ok(状态信息) |
 |首部Header|Accept Accept-Language | Content-type Content-length|
 |主体| |返回数据 |
@@ -90,37 +90,7 @@ console.log("server is running on 8088 port.");
 　　在http中，控制缓存开关的字段有两个：**Pragma** 和 **Cache-Control**，Pragma有两个字段Pragma和Expires。Pragma的值为no-cache时，表示禁用缓存，Expires的值是一个GMT时间，表示该缓存的有效时间。  
 　　Pragma是旧产物，已经逐步抛弃，如果一个报文中同时出现Pragma和Cache-Control时，优先级从高到低是 **Pragma -> Cache-Control -> Expires**
 
-### __缓存Cache-Control__
-
-Cache-Control字段是http报文中的通用首部字段，既存在于请求报文中，也存在于响应报文中。部分字段值是共有的，但是具体的处理也会有差异。
-
-1. 共有字段
-
-|共有字段值 | 请求报文中的作用 | 响应报文中的作用 |
-|:-|:-:|-:|
-|no-cache|客户端提醒缓存服务器，在使用缓存前，不管缓存资源是否过期了，都必须进行校验|缓存服务器在缓存资源前，必须进行校验，判断是否有效|
-|no-store|暗示请求报文中可能含有机密信息，不可缓存|暗示响应报文中可能含有机密信息，不可缓存|
-|max-age=[秒]|如果缓存资源的缓存时间值小于指定的时间值，则客户端接收缓存资源（如果值为0，缓存服务器通常需要将请求转发给源服务器进行响应，不使用缓存）|在指定时间内，缓存服务器不再对资源的有效性进行确认，可以使用|
-|no-transform|禁止代理改变实体主体的媒体类型（例如禁止代理压缩图片等）|与请求报文作用相同|
-|cache-extension|新指令标记（token），如果缓存服务器不能理解，则忽略|与请求报文作用相同|
-
-2. 请求报文私有字段值
-
-|字段值|作用|
-|:-|:-:|
-|max-stale(=[秒])|提示缓存服务器，即使资源过期也接收；或者过期后的指定时间内，客户端也会接收|
-|min-fresh=[秒]|提示缓存服务器，如果资源在指定时间内还没过期，则返回|
-|only-if-cached|如果缓存服务器有缓存该资源，则返回，不需要确认有效性。否则返回504网关超时|
-
-3. 响应报文私有字段值
-
-|字段值|作用|
-|:-|:-:|
-|public|明确指明其他用户也可以使用缓存资源|
-|private|缓存服务器只给指定的用户返回缓存资源，对于其他用户不返回缓存资源|
-|must-revalidate|缓存资源未过期，则返回，否则代理要向源服务器再次验证即将返回的响应缓存是否有效，如果连接不到源服务器，则返回504网关超时|
-|proxy-revalidate|所有缓存服务器在客户端请求返回响应之前，再次向源服务器验证缓存有效性|
-|s-maxage=[秒]|缓存资源的缓存时间小于指定时间，则可以返回缓存资源，只适用于公共缓存服务器|
+### __Cache-Control__
 
 #### 可缓存性
 
@@ -144,6 +114,8 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 - no-store：本地和代理服务器都不可以存储缓存，每次都要重新请求原服务器获取数据。
 - no-transform：主要是用在代理服务器，不允许进行格式转换或者压缩等操作。
 
+各个字段详解，[点击这里](https://github.com/Marilynlee/blog/edit/master/cacheControl.md)
+
 ### __资源验证__
 
 #### 验证头
@@ -156,9 +128,26 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 　　服务器设置Last-Modifed和Etag的值，浏览器第2次请求，会在请求头中携带If-Modified-since( Last-Modifed值) 和 If-None-Match(Etag值)。服务器不返回实际的内容，只需要告诉浏览器直接读取缓存即可,达到通过在服务器端进行验证的作用。  
 　　如何判断服务端通过验证,数据从缓存读取的呢?通过服务器设置HTTP Code 304:Not Modified 表示资源没有修改，直接读缓存，浏览器就会忽略服务端返回的内容。在Chrome控制台勾上Disable cache，刷新页面，request headers请求中就会去掉和缓存相关的头了，如：If-Modified-Since。
 
-### cookie和session
+## __cookie和session__
 
 [详情见这里](https://github.com/Marilynlee/blog/edit/master/cookie&session.md)
+
+## __http的持久化Connection__
+
+在HTTP/1.0时代，每次HTTP请求都要进行一次TCP三次握手和四次挥手。随着互联网发展，Web网页交互变得复杂，一个HTML页面时，在发送HTTP请求时，也会请求该HTML页面里包含的其他资源，比如图片等静态文件。因此，每次的请求都会造成无谓的TCP连接建立和断开，增加网络通信量的开销。  
+HTTP/1.1和一部分的HTTP/1.0想出了持久连接的办法，即只要任意一端没有明确提出断开连接，则保持TCP连接状态。HTTP持久连接允许在事务处理结束之后将TCP连接保持在打开状态，以便为未来的HTTP请求重用现存的连接。在事务处理结束之后仍然保持在打开状态的TCP连接被称为持久连接。持久连接特点：  
+优点：重用已对目标服务器打开的空闲持久连接，可以避开缓慢的连接建立阶段，更快速地进行数据的传输。  
+缺点：管理不当可能会积累出大量的空闲连接，耗费本地客户端以及远程服务器上的资源。
+
+HTTP持久连接实现手段：通过设置http的header的Connection属性可以复用TCP连接，一般connection可以设置为keep-alive和close：  
+
+- Connection: keep-alive：开启HTTP持久连接，HTTP/1.1默认值。表示复用TCP连接。
+- Connection: close：关闭HTTP持久连接，HTTP/1.0默认值,每次请求后关闭TCP连接。
+
+注：chrome、firefox浏览器可以并发6个http连接，Opera、safari浏览器可以并发4个http连接，ieHTTP/1.0并发数2个HTTP/1.1改进为4个。
+
+
+
 
 
 
