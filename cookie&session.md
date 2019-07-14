@@ -92,3 +92,9 @@ Session在用户第一次访问服务器的时候自动创建，Session生成后
 |void setMaxInactiveInterval(int second)||设置Session的超时时间。单位为秒|
 |boolean isNew()|返回该Session是否是新创建的|
 |void invalidate()|使该Session失效|
+
+
+
+_________
+***[返回列表页](https://github.com/Marilynlee/blog)***
+_________
