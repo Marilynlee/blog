@@ -151,7 +151,7 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 - Last-Modified：上次修改时间，配合If-Modified-Since或If-Unmodified-Since使用，通常浏览器使用前者。服务器对比上次修改时间以验证资源是否需要更新。
 - Etag：数据签名，资源内容会对应有一个唯一的签名，如果资源数据更改，签名也会变。配合If-Match或者If-None-Match使用，其值就是服务端返回的Etag值，对比资源的签名判断是否使用缓存
 
-####验证头的使用
+#### 验证头的使用
 
 　　服务器设置Last-Modifed和Etag的值，浏览器第2次请求，会在请求头中携带If-Modified-since( Last-Modifed值) 和 If-None-Match(Etag值)。服务器不返回实际的内容，只需要告诉浏览器直接读取缓存即可,达到通过在服务器端进行验证的作用。  
 　　如何判断服务端通过验证,数据从缓存读取的呢?通过服务器设置HTTP Code 304:Not Modified 表示资源没有修改，直接读缓存，浏览器就会忽略服务端返回的内容。在Chrome控制台勾上Disable cache，刷新页面，request headers请求中就会去掉和缓存相关的头了，如：If-Modified-Since。
@@ -159,3 +159,14 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 ### cookie和session
 
 [详情见这里](https://github.com/Marilynlee/blog/edit/master/cookie&session.md)
+
+
+
+
+
+
+
+_________
+***[返回列表页](https://github.com/Marilynlee/blog)***
+_________
+
