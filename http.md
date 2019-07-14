@@ -114,7 +114,7 @@ console.log("server is running on 8088 port.");
 - no-store：本地和代理服务器都不可以存储缓存，每次都要重新请求原服务器获取数据。
 - no-transform：主要是用在代理服务器，不允许进行格式转换或者压缩等操作。
 
-各个字段详解，[点击这里](https://github.com/Marilynlee/blog/edit/master/cacheControl.md)
+各个字段详解，[点击这里](https://github.com/Marilynlee/blog/blob/master/cacheControl.md)
 
 ### __资源验证__
 
