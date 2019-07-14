@@ -4,8 +4,8 @@
 
 ### __网络模型__
 
-1. 应用层（HTTP、FTP协议层）
-2. 传输层（TCP、UDP协议层）
+1. 应用层（HTTP、FTP、DNS协议层）
+2. 传输层（TCP、UDP、SCTP协议层）
 3. 网络层（数据在节点之间传输创建逻辑链路）
 4. 数据链路层（在通信实体间建立数据链路连接）
 5. 物理层（定义物理设备如何传输数据）
@@ -88,7 +88,7 @@ console.log("server is running on 8088 port.");
 　　http缓存指的是: 当客户端向服务器请求资源时，会先抵达浏览器缓存，如果浏览器有“要请求资源”的副本，就可以直接从浏览器缓存中提取而不是从原始服务器中提取这个资源。  
 　　常见的http缓存只能缓存get请求响应的资源，且是从第二次请求开始的。第一次请求资源时，服务器返回资源，并在respone header头中回传资源的缓存参数；第二次请求时，浏览器判断这些请求参数，命中强缓存就直接200，否则就把请求参数加到request header头中传给服务器，看是否命中协商缓存，命中则返回304，否则服务器会返回新的资源。  
 　　在http中，控制缓存开关的字段有两个：**Pragma** 和 **Cache-Control**，Pragma有两个字段Pragma和Expires。Pragma的值为no-cache时，表示禁用缓存，Expires的值是一个GMT时间，表示该缓存的有效时间。  
-　　Pragma是旧产物，已经逐步抛弃，有些网站为了向下兼容还保留了这两个字段。如果一个报文中同时出现Pragma和Cache-Control时，以Pragma为准。同时出现Cache-Control和Expires时，以Cache-Control为准。即优先级从高到低是 **Pragma -> Cache-Control -> Expires**
+　　Pragma是旧产物，已经逐步抛弃，如果一个报文中同时出现Pragma和Cache-Control时，优先级从高到低是 **Pragma -> Cache-Control -> Expires**
 
 ### __缓存Cache-Control__
 
@@ -136,18 +136,26 @@ Cache-Control字段是http报文中的通用首部字段，既存在于请求报
 
 #### 重新验证
 
-- must-revalidate，浏览器可能会用到，如果 max-age 过期，需要重新发送请求，获取这部分数据，再来验证数据是否真的过期，而不能直接使用本地缓存。
-- proxy-revalidate，用在缓存服务器中，指定缓存服务器过期后，必须向源服务器重新请求，不能直接使用本地缓存。
+- must-revalidate：浏览器可能会用到，如果max-age过期，需要重新发送请求，去原服务端验证数据是否真的过期，而不能直接使用本地缓存。
+- proxy-revalidate：用在缓存服务器中，指定缓存服务器过期后，必须向源服务器重新请求，不能直接使用本地缓存。
 
 #### 其他
 
-- no-store，本地和代理服务器都不可以存储缓存，每次都要重新请求，拿到内容。
-- no-transform，主要是用在 proxy 服务器，不允许进行格式转换。
+- no-store：本地和代理服务器都不可以存储缓存，每次都要重新请求原服务器获取数据。
+- no-transform：主要是用在代理服务器，不允许进行格式转换或者压缩等操作。
 
+### __资源验证__
 
+#### 验证头
 
+- Last-Modified：上次修改时间，配合If-Modified-Since或If-Unmodified-Since使用，通常浏览器使用前者。服务器对比上次修改时间以验证资源是否需要更新。
+- Etag：数据签名，资源内容会对应有一个唯一的签名，如果资源数据更改，签名也会变。配合If-Match或者If-None-Match使用，其值就是服务端返回的Etag值，对比资源的签名判断是否使用缓存
 
+####验证头的使用
 
-_________
-***[返回列表页](https://github.com/Marilynlee/blog)***
-_________
+　　服务器设置Last-Modifed和Etag的值，浏览器第2次请求，会在请求头中携带If-Modified-since( Last-Modifed值) 和 If-None-Match(Etag值)。服务器不返回实际的内容，只需要告诉浏览器直接读取缓存即可,达到通过在服务器端进行验证的作用。  
+　　如何判断服务端通过验证,数据从缓存读取的呢?通过服务器设置HTTP Code 304:Not Modified 表示资源没有修改，直接读缓存，浏览器就会忽略服务端返回的内容。在Chrome控制台勾上Disable cache，刷新页面，request headers请求中就会去掉和缓存相关的头了，如：If-Modified-Since。
+
+### cookie和session
+
+[详情见这里](https://github.com/Marilynlee/blog/edit/master/cookie&session.md)
