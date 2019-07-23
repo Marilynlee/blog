@@ -4,3 +4,4 @@
 
 - [http知识](https://github.com/Marilynlee/blog/blob/master/http.md)
 - [webstorm快捷键](https://github.com/Marilynlee/blog/blob/master/shortcutsOfWebstorm.md)
+- [bash命令](https://github.com/Marilynlee/blog/blob/master/bash.md)
