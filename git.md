@@ -37,3 +37,11 @@
     - git log 　　  　　查看提交历史
     - git reset –hard 版本号 　　  　　恢复提交至某个版本
     - git push origin <分支名> –force 　　  　　为了覆盖掉远程代码，需要用–force参数，否则会提示本地版本落后于远程版本，推不上去。
+    
+    
+    
+    
+_________
+***[返回列表页](https://github.com/Marilynlee/blog)***
+_________
+
