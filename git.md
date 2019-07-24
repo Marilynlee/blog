@@ -1,16 +1,20 @@
 # git
 
-1. git创建一个本地分支并推送到远端
+## git切换到指定的远程分支
+
+- git checkout -b dev/1.0.0 origin/dev/1.0.0　　　本地创建dev/1.0.0分支关联远程dev/1.0.0分支，并切换到该本地分支
+
+## git创建一个本地分支并推送到远端
 
 - git checkout master　　　　切换到master主分支上
-- git checkout -b daily/12.0.0　　　　创建daily/12.0.0分支，并切换到该本地分支
+- git checkout -b dev/1.0.0　　　　创建dev/1.0.0分支，并切换到该本地分支
 - git status         　　　　修改文件后，查看状态
 - git diff           　　　　查看具体的修改内容
 - git add .          　　　　 添加所有修改到缓存区
 - git commit -n -m "fixed bug"　　　　提交修改
-- git push origin daily/12.0.0:daily/12.0.0　　　　新建的本地分支push到远程，远程分支与本地分支可以同名，也可以不同名（本地分支：远程分支）
-- git branch --set-upstream-to=origin/daily/12.0.0 daily/12.0.0　　　　关联本地12.0.0分支到远程12.0.0分支
-- git push -u origin daily/12.0.0:daily/12.0.0       本地分支push到远程并关联，相当于合并上面2个步骤
+- git push origin dev/1.0.0:dev/1.0.0　　　　新建的本地分支push到远程，远程分支与本地分支可以同名，也可以不同名（本地分支：远程分支）
+- git branch --set-upstream-to=origin/dev/1.0.0 dev/1.0.0　　　　关联本地dev/1.0.0分支到远程dev/1.0.0分支
+- git push -u origin dev/1.0.0:dev/1.0.0       本地分支push到远程并关联，相当于合并上面2个步骤
 
 ## git bash 支持tree命令方法
 
