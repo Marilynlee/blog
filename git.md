@@ -10,6 +10,7 @@
 - git commit -n -m "fixed bug"　　　　提交修改
 - git push origin daily/12.0.0:daily/12.0.0　　　　新建的本地分支push到远程，远程分支与本地分支可以同名，也可以不同名（本地分支：远程分支）
 - git branch --set-upstream-to=origin/daily/12.0.0 daily/12.0.0　　　　关联本地12.0.0分支到远程12.0.0分支
+- git push -u origin daily/12.0.0:daily/12.0.0       本地分支push到远程并关联，相当于合并上面2个步骤
 
 ## git bash 支持tree命令方法
 
