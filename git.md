@@ -3,7 +3,7 @@
 1. git创建一个本地分支并推送到远端
 
 - git checkout master　　　　切换到master主分支上
-- git branch -b daily/12.0.0　　　　创建daily/12.0.0分支，并切换到该本地分支
+- git checkout -b daily/12.0.0　　　　创建daily/12.0.0分支，并切换到该本地分支
 - git status         　　　　修改文件后，查看状态
 - git diff           　　　　查看具体的修改内容
 - git add .          　　　　 添加所有修改到缓存区
