@@ -4,6 +4,17 @@
 
 - git checkout -b dev/1.0.0 origin/dev/1.0.0　　　本地创建dev/1.0.0分支关联远程dev/1.0.0分支，并切换到该本地分支
 
+## git将一个已有的本地分支关联到到远端已有的仓库
+- git init　　　　初始化git
+- git status         　　　　修改文件后，查看状态
+- git diff           　　　　查看具体的修改内容
+- git add .          　　　　 添加所有修改到缓存区
+- git commit -m "fixed bug"　　　　提交修改
+- git remote add origin git@github.com:Marilynlee/eggDemo.git 　　　　为本地仓库添加远程仓库关联
+- git remote remove origin 　　　　删除本地仓库关联的远程仓库
+- git pull origin/master master 　　　　拉取远程仓库的代码
+- git push origin 　　　　将本地代码推送至远端
+
 ## git创建一个本地分支并推送到远端
 
 - git checkout master　　　　切换到master主分支上
