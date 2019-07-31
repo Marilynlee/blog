@@ -4,6 +4,17 @@
 
 - git checkout -b dev/1.0.0 origin/dev/1.0.0　　　本地创建dev/1.0.0分支关联远程dev/1.0.0分支，并切换到该本地分支
 
+## git查看、删除分支
+
+- git branch　　　查看本地分支
+- git branch -vv　　　查看本地分支和远程详细的关联信息
+- git branch -r　　　查看远程分支
+- git branch -a　　　查看所有分支，包括远程和本地
+- git branch -d dev/1.0.0　　　删除本地dev/1.0.0分支
+- git branch -D dev/1.0.0　　　强制删除本地dev/1.0.0分支，一般不建议使用
+- git push origin --delete dev/1.0.0　　　删除远程dev/1.0.0分支
+- git push origin :dev/1.0.0　　　推送空的分支到远程，也可以删除远程dev/1.0.0分支
+
 ## git将一个已有的本地分支关联到到远端已有的仓库
 - git init　　　　初始化git
 - git status         　　　　修改文件后，查看状态
