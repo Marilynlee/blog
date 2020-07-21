@@ -31,12 +31,15 @@ server {
 ```
 
 **注意**: mac系统不允许用户进程使用1024以下端口，所以nginx默认绑定8080端口。即使nginx配置文件写了80端口也不会生效。
+
 4. 修改管理员权限
 `sudo chown root:wheel/usr/local/opt/nginx/bin/nginx`
 `sudo chmod u+s/usr/local/opt/nginx/bin/nginx`
+
 5. 加上launchctl控制
 `sudo cp /usr/local/opt/nginx/*.plist /Library/LaunchDaemons`
 `sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist`
+
 6. 启动nginx
 `sudo nginx` #启动
 `sudo nginx -t` #测试配置文件是否有错
@@ -46,6 +49,7 @@ server {
 `sudo brew services stop nginx` #关闭nginx
 `ps -ef|grep nginx` #查看nginx的进程
 `lsof -i:80`  #查看80端口占用进程
+
 7. 问题
 如果出现nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"，则需要
 `sudo nginx -c /usr/local/etc/nginx/nginx.conf`
