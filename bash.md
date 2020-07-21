@@ -44,6 +44,17 @@ q!【强制退出不保存】 q【退出不保存】 wq【退出并保存后面�
 - start .　　　　打开当前目录，也可以用explorer代替start，如 explorer .
 - start /d/Git　　　　打开d盘git目录
 
+## git bash 支持tree命令方法
+
+- cd到git安装目录,如 `cd /d/Program\ Files/Git`
+- 输入命令：`echo "# Set alias for tree command" >> ./etc/bash.bashrc`
+- 输入命令：`echo "alias tree='winpty tree.com'" >> ./etc/bash.bashrc`
+- 输入命令：`source ./etc/bash.bashrc`
+
+## webstorm配置terminal为git bash
+将 File > Setting > Tools > Terminal > Shell path 中的cmd.exe换成想要换的终端即可，如bash.exe
+
+
 _________
 ***[返回列表页](https://github.com/Marilynlee/blog)***
 _________
