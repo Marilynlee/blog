@@ -56,7 +56,7 @@
 - 服务端：服务端可以通过设置响应头的Access-Control-Allow-Origin属性进行跨域
 
 ```javascript
-const http = require("http");
+const http = require("HTTP/http");
 const url = require("url");
 http.createServer((request, response) => {
     console.log("80 request come!", request);

@@ -31,7 +31,7 @@ Cookie的maxAge决定着Cookie的有效期，单位为秒。maxAge默认值为�
 - 如果maxAge为负数，则表示该Cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该 Cookie即失效。maxAge为负数的Cookie为临时性Cookie，不会被持久化写到Cookie文件中。Cookie信息是保存在浏 览器内存中，因此关闭浏览器该Cookie就消失了
 - 如果maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。
 ```javascript
-const http = require("http");
+const http = require("HTTP/http");
 const fs=require('fs');
 http.createServer((request, response) => {
     console.log("8011 request come!",request.url);
