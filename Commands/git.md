@@ -38,6 +38,18 @@
 - git branch --set-upstream-to=origin/dev/1.0.0 dev/1.0.0　　　　关联本地dev/1.0.0分支到远程dev/1.0.0分支
 - git push -u origin dev/1.0.0:dev/1.0.0       本地分支push到远程并关联，相当于合并上面2个步骤
 
+## git rebase
+- git add c.sh
+- git commit -m "xxx"
+- git pull --rebase    #衍合服务器最新代码   `git pull`的默认行为是`git fetch + git merge`   `git pull --rebase`则是`git fetch + git rebase`.
+- git status           #查看有哪些冲突的文件
+- vi 冲突文件          #打开文件后搜索<<<<<<<与>>>>>>>之间的内容，就是冲突的地方，修改冲突行，保存退出。
+- git add 冲突文件     #添加修改后的文件到缓存区
+- git rebase --continue         #继续rebase  --abort放弃合并，回到rebase操作之前的状态     --skip将引起冲突的commits丢弃掉，即自己的修改全部丢弃（慎用!） 
+- git log                       #如果rebase成功，表示冲突已解决，此时可以查看log
+- git commit --amend            #修改最后一次提交，包括文件与注释
+- git push                      #重新push提交
+
 ## git bash 支持tree命令方法
 
 - cd到git安装目录,如 `cd /d/Program\ Files/Git`
