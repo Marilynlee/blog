@@ -64,15 +64,6 @@
     - git log 　　  　　查看提交历史
     - git reset –hard 版本号 　　  　　恢复提交至某个版本
     - git push origin <分支名> –force 　　  　　为了覆盖掉远程代码，需要用–force参数，否则会提示本地版本落后于远程版本，推不上去。
- ## git bugs
- 1. 新生成密钥的时候，git clone或者push的时候，可能会报如下错误：
-
-```
-The authenticity of host 'gitee.com (xxx.xxx.xxx.xxx)' can't be established.
-ECDSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxx.
-```
-Google之后明白，文件夹内少了一个known_hosts文件，本来密钥文件应该是三个，现在只有两个，便报了这样的错误
-此时输入yes回车之后，生成了缺少了的known_hosts文件，便可解决
 
 
 
