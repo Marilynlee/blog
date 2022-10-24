@@ -61,7 +61,7 @@ A: 因为未配置babel所以无法识别import的动态加载，需要babel的�
     "env": {
       "test": {
         "presets": ["env", "stage-2"],
-        "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-node"]
+        "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-Node"]
       }
     }
   }
