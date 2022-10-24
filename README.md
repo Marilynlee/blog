@@ -6,6 +6,7 @@
 - [git](https://github.com/Marilynlee/blog/blob/master/Bugs/git.md)
 - [h5](https://github.com/Marilynlee/blog/blob/master/Bugs/h5.md)
 - [vue](https://github.com/Marilynlee/blog/blob/master/Bugs/vue.md)
+- [react](https://github.com/Marilynlee/blog/blob/master/Bugs/react.md)
 
 ## 常用命令
 - [bash and cmd](https://github.com/Marilynlee/blog/blob/master/Commands/bash.md)
