@@ -1,0 +1,1 @@
+1. 使用antd的form组件时，在validate方法里因处理其它函数导致报错，会导致form的validate方法无法捕获，既不报错，也无法成功提交表单。
